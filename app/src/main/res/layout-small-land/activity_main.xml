@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="16dp">
+
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/tlTimeInterval"
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:paddingTop="16dp">
+
+
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/teTimeInterval"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:focusable="false"
+                    android:hint="@string/time_interval"
+                    android:singleLine="true"
+                    android:text="60"
+                    android:textColorHint="@color/colorAccent" />
+            </android.support.design.widget.TextInputLayout>
+
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/tlSyncInterval"
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:paddingTop="16dp">
+
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/teSyncInterval"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:focusable="false"
+                    android:hint="@string/sync_interval"
+                    android:singleLine="true"
+
+                    android:text="60"
+                    android:textColorHint="@color/colorAccent" />
+            </android.support.design.widget.TextInputLayout>
+
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:padding="8dp"
+            android:text="Curent Location is :"
+            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium.Inverse"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvLocation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:padding="8dp"
+            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium.Inverse"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:padding="8dp"
+            android:text="Device IMEI Number is :"
+            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium.Inverse"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvIMEINO"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:padding="8dp"
+            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium.Inverse"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <com.spark.submitbutton.SubmitButton
+            android:id="@+id/btnGetconfig"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Get Configuration"
+            android:textColor="@color/gray"
+            app:sub_btn_background="@color/white"
+            app:sub_btn_duration="3000"
+            app:sub_btn_line_color="@color/sub_btn_line"
+            app:sub_btn_ripple_color="@color/sub_btn_line"
+            app:sub_btn_tick_color="@color/white" />
+
+
+        <!--app:sub_btn_ripple_color="@color/green"-->
+
+
+        <!--
+
+                <TextView
+                    android:id="@+id/tvLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Current Location"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tvNextLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Next Locatiob"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+        -->
+
+    </LinearLayout>
+
+</layout>

@@ -1,0 +1,402 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".MainActivity">
+    <android.support.design.widget.CoordinatorLayout
+        android:id="@+id/coordinatorLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+      <!--  android:background="?attr/colorPrimary"-->
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+      <!--  <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+
+        android:background="@drawable/baner"
+
+        app:layout_scrollFlags="scroll|enterAlways"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />-->
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#f4bc33"
+            android:backgroundTint="#f4bc33"
+            android:src="@drawable/banner"/>
+    </android.support.design.widget.AppBarLayout>
+
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/gsplc"
+        android:gravity="center"
+        android:orientation="vertical">
+
+
+        <android.support.v7.widget.CardView
+            xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/card_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="@dimen/_20sdp"
+            android:layout_marginLeft="@dimen/_20sdp"
+            android:layout_marginRight="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_30sdp"
+            android:padding="@dimen/_8sdp"
+            card_view:cardBackgroundColor="#99000000"
+            card_view:cardCornerRadius="16dp"
+            card_view:cardElevation="8dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="16dp"
+                    android:text="@string/title_tracklog_detail"
+                    android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
+                    android:textColor="@color/white"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="16dp"
+                    android:orientation="horizontal">
+
+
+                    <TextView
+                        android:layout_width="@dimen/_120sdp"
+                        android:layout_height="wrap_content"
+                        android:gravity="left"
+                        android:text="@string/time_interval"
+                        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small"
+                        android:textColor="@color/white"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tvLocationInterval"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:gravity="left"
+                        android:text="60"
+                        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small"
+                        android:textColor="@color/white" />
+
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="16dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="120dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="left"
+                        android:text="@string/sync_interval"
+                        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small"
+                        android:textColor="@color/white"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tvSyncInterval"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:gravity="left"
+                        android:text="60"
+                        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small"
+                        android:textColor="@color/white"
+
+                        />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="16dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="120dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="left"
+
+                        android:text="@string/location"
+                        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small"
+                        android:textColor="@color/white"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tvLocation"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_8sdp"
+                        android:gravity="left"
+                        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small"
+                        android:textColor="@color/white" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="16dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="120dp"
+                        android:layout_height="wrap_content"
+
+                        android:gravity="left"
+                        android:text="@string/imei_no"
+                        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small"
+                        android:textColor="@color/white"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tvIMEINO"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:gravity="left"
+
+                        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small"
+                        android:textColor="@color/white"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </LinearLayout>
+
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="100dp"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:visibility="gone"
+
+                       >
+
+                        <com.spark.submitbutton.SubmitButton
+                            android:id="@+id/btnGetconfig"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:text="Get Configuration"
+                            android:textColor="@color/black"
+                            android:textStyle="bold"
+                            app:sub_btn_background="@color/white"
+                            app:sub_btn_duration="3000"
+                            app:sub_btn_line_color="@color/sub_btn_line"
+                            app:sub_btn_ripple_color="@color/sub_btn_line"
+                            app:sub_btn_tick_color="@color/white" />
+                    </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:orientation="vertical">
+
+                    <!--<RelativeLayout
+                        android:id="@+id/rlMain"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_56sdp"
+                        android:layout_gravity="center"
+                        android:layout_margin="@dimen/_15sdp"
+                        android:background="@drawable/custom_blackbutton"
+                        android:paddingStart="@dimen/_10sdp"
+                        android:clickable="true">
+
+
+                        <ImageView
+                            android:layout_width="@dimen/_30sdp"
+                            android:layout_height="@dimen/_30sdp"
+                            android:layout_alignParentStart="true"
+                            android:layout_marginStart="@dimen/_45sdp"
+                            android:layout_centerVertical="true"
+                            android:src="@drawable/round_build_white_18dp"
+                            android:tint="@color/black"/>
+                        <TextView
+                            android:id="@+id/txt_submit"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:text="Get Configuration"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_16sdp"
+                            android:textStyle="bold" />
+
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_56sdp"
+                        android:layout_gravity="center"
+                        android:layout_margin="@dimen/_15sdp"
+                        android:background="@drawable/custom_blackbutton"
+                        android:paddingStart="@dimen/_10sdp">
+
+
+                        <ImageView
+                            android:layout_width="@dimen/_30sdp"
+                            android:layout_height="@dimen/_30sdp"
+                            android:layout_alignParentStart="true"
+                            android:layout_marginStart="@dimen/_45sdp"
+                            android:layout_centerVertical="true"
+                            android:src="@drawable/round_near_me_white_18dp"
+                            android:tint="@color/black"/>
+                        <TextView
+                            android:id="@+id/txt_send"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="Send TrackLog"
+                            android:gravity="center"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_16sdp"
+                            android:textStyle="bold" />
+
+
+                    </RelativeLayout>-->
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+
+                        <TextView
+                            android:id="@+id/txt_submit"
+                            android:layout_width="match_parent"
+                            android:layout_height="56dp"
+                            android:layout_margin="16dp"
+                            android:background="@drawable/custom_blackbutton"
+                            android:drawableLeft="@drawable/round_build_white_18dp"
+                            android:drawableTint="@color/black"
+                            android:drawablePadding="8dp"
+                            android:gravity="center|left"
+                            android:paddingStart="48dp"
+                            android:text="@string/get_configuration"
+                            android:textColor="@color/black"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+
+                        <TextView
+                            android:id="@+id/txt_send"
+                            android:layout_width="match_parent"
+                            android:layout_height="56dp"
+                            android:layout_margin="16dp"
+                            android:background="@drawable/custom_blackbutton"
+                            android:drawableLeft="@drawable/round_near_me_white_18dp"
+                            android:drawablePadding="8dp"
+                            android:gravity="left|center"
+                            android:drawableTint="@color/black"
+                            android:paddingStart="48dp"
+                            android:text="@string/send_track_log"
+                            android:textColor="@color/black"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+
+                    </LinearLayout>
+
+
+
+                </LinearLayout>
+
+
+
+
+              <!--  <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <com.spark.submitbutton.SubmitButton
+                        android:id="@+id/btnSendData"
+
+                        android:layout_width="match_parent"
+                        android:layout_height="120dp"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:text="Send Data"
+                        android:textColor="@color/black"
+                        android:textStyle="bold"
+                        app:sub_btn_background="@color/white"
+                        app:sub_btn_duration="3000"
+                        app:sub_btn_line_color="@color/sub_btn_line"
+                        app:sub_btn_ripple_color="@color/sub_btn_line"
+                        app:sub_btn_tick_color="@color/white" />
+
+
+
+
+                </LinearLayout>-->
+            <!--    <com.github.clans.fab.FloatingActionButton
+                    android:id="@+id/fab"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|right"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginRight="8dp"
+                    android:src="@drawable/common_full_open_on_phone"
+                    app:fab_colorNormal="@color/colorAccent"
+                    app:fab_colorPressed="@color/colorPrimary"
+                    app:fab_colorRipple="@color/colorPrimary"/>
+-->
+
+            </LinearLayout>
+
+
+
+<!--
+
+            <com.nightonke.boommenu.BoomMenuButton
+                android:id="@+id/bmb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                />
+-->
+
+
+        </android.support.v7.widget.CardView>
+
+
+
+
+    </LinearLayout>
+    </android.support.design.widget.CoordinatorLayout>
+
+</layout>
+
+
