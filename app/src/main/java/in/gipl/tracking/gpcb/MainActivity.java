@@ -90,6 +90,7 @@ public class        MainActivity extends AppCompatActivity {
     Utils utils;
     DataBaseHelper db ;
     Location loc ;
+    boolean isFirstTimeInstall;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,6 +101,15 @@ public class        MainActivity extends AppCompatActivity {
         Log.e(TAG, "onCreate: called--" );
         getSyncInterval(check = false);
         db = new DataBaseHelper(MainActivity.this);
+
+        if(appPrefs.getIMEINO()!= null)
+        {
+            isFirstTimeInstall = false;
+        }else
+        {
+            Log.e(TAG, "onCreate: APP IS INSTALL FIRST TIME_____>>>" );
+            isFirstTimeInstall = true;
+        }
 
 
     }
@@ -134,6 +144,7 @@ public class        MainActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
                 binding.txtSubmit.startAnimation(animFadeIn);
+                //pass flag to check if button click then show snackbar else not
                 getSyncInterval(check=true);
 
 
@@ -171,7 +182,7 @@ public class        MainActivity extends AppCompatActivity {
                 if (location != null) {
                     Timber.i("location is %s", location);
                     loc = location;
-                    Log.e(TAG, "onLocationUpdate: LOCAtion"+loc );
+                    Log.e(TAG, "onLocationUpdate: LOCAtion : "+loc );
                     binding.tvLocation.setText(location.getLatitude() + "  | " + location.getLongitude());
                     //binding.tvIMEINO.setText(appPrefs.getIMEINO()!= null ? appPrefs.getIMEINO() : "Could not find IMEI Number." );
                     binding.tvIMEINO.setText(appPrefs.getIMEINO());
@@ -188,12 +199,41 @@ public class        MainActivity extends AppCompatActivity {
 
         locationActivityHelper.create();
 
-        Log.e(TAG, "onPostCreate: Calling  FirstLocationSyncTask---" );
 
-        if(loc!= null)
+
+        if(isFirstTimeInstall)
         {
-            new FirstLocationSyncTask(db, binding, MainActivity.this, loc).execute();
+            if(loc!= null)
+            {
+
+                if(utils.isDeviceOnline())
+                {
+                    Log.e(TAG, "onPostCreate: Calling  FirstLocationSyncTask---" );
+                    new FirstLocationSyncTask(db, binding, MainActivity.this, loc).execute();
+
+                }else {
+                    Log.e(TAG, "onPostCreate: DEVICE OFFLINE" );
+
+
+                    utils.showMessage(MainActivity.this, "Oops! ", "No Internet connection.Please Turn On Internet Connection for Device Location Configuration", "Okay", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+
+                        }
+                    }, "Turn On", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            Intent intent = new Intent(Settings.ACTION_WIRELESS_SETTINGS);
+                            startActivity(intent);
+                        }
+                    });
+                }
+
+
+            }
         }
+
+
 
 
         // Start Firebase Job
@@ -296,13 +336,33 @@ public class        MainActivity extends AppCompatActivity {
         }
 
         String jsonArrayString = jsonArray.toString();
-        Log.e(TAG, "sendPost: jsonSring -----" + jsonArrayString);
+        Log.e(TAG, "sendLog: jsonSring -----" + jsonArrayString);
+
+
+
+        if(utils.isDeviceOnline()) {
+
+            new OkHttpAsyncTask(locationDataList,db, binding).execute();
+        }else
+        {
+            Log.e(TAG, "sendLog: DEVICE OFFLINE" );
+            utils.showMessage(MainActivity.this, "Oops! ", "No Internet connection.Please check Your Internet Connection", "Okay", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+
+                }
+            }, "Turn On", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    Intent intent = new Intent(Settings.ACTION_WIRELESS_SETTINGS);
+                    startActivity(intent);
+                }
+            });
+        }
 
 
 
 
-
-        new OkHttpAsyncTask(locationDataList,db, binding).execute();
 
 
      }
@@ -438,30 +498,21 @@ public class        MainActivity extends AppCompatActivity {
                                     .setAction("Okay", new View.OnClickListener() {
                                         @Override
                                         public void onClick(View view) {
-                                   /* Snackbar snackbar1 = Snackbar.make(binding.coordinatorLayout, "Message is restored!", Snackbar.LENGTH_SHORT);
-                                    snackbar1.show();*/
+
                                         }
                                     });
 
-                      /*  View view = snackbar.getView();
-                        CoordinatorLayout.LayoutParams params = (CoordinatorLayout.LayoutParams)      view.getLayoutParams();
-                        params.gravity = Gravity.FILL_HORIZONTAL | Gravity.BOTTOM;
-                        view.setLayoutParams(params);*/
-                            /* View sbView = snackbar.getView();*/
 
                             snackbar.show();
                             snackbar.setActionTextColor(Color.YELLOW);
 
 
-                            //snackbar.show();
-                    /*View sbView = snackbar.getView();
-                    TextView textView = (TextView) sbView.findViewById(android.support.design.R.id.snackbar_text);
-                    textView.setTextColor(Color.YELLOW);*/
+
                         } else {
 
                         }
 
-                        /*   Toast.makeText(MainActivity.this, "Configuration set Successfully", Toast.LENGTH_SHORT).show();*/
+
 
                     } else {
                         Log.e(TAG, "onResponse: Failures----" + response.errorBody());
@@ -478,6 +529,7 @@ public class        MainActivity extends AppCompatActivity {
             });
         }else
         {
+            Log.e(TAG, "getSyncInterval: DEVICE OFFLINE" );
 
             utils.showMessage(MainActivity.this, "Oops! ", "No Internet connection.Please check Your Internet Connection", "Okay", new DialogInterface.OnClickListener() {
                 @Override

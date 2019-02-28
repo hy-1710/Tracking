@@ -84,15 +84,12 @@ public class FirstLocationSyncTask  extends AsyncTask<Void, Void, String> {
             Log.e(TAG, "call: TOTAL NO OF RECORDS :" + db.getAllLocation());
 
             s = Long.toString(id);
-            String str = SyncDate();
+            String str = SyncData();
 
             if(str!= null) {
 
             }
         }
-
-
-
 
         return  null;
 
@@ -109,7 +106,7 @@ public class FirstLocationSyncTask  extends AsyncTask<Void, Void, String> {
 
     }
 
-    private String SyncDate()
+    private String SyncData()
     {
         if(db.getAllLocation().size() > 0)
         {
