@@ -26,10 +26,11 @@
           app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />-->
         <ImageView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="100dp"
             android:src="@drawable/banner"
-            android:background="#f4bc33"
-            android:backgroundTint="#f4bc33"/>
+            android:background="#416bc1"
+            android:scaleType="fitXY"
+            android:backgroundTint="#416bc1"/>
     </android.support.design.widget.AppBarLayout>
 
         <LinearLayout
@@ -46,10 +47,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="560dp"
 
-                android:layout_gravity="center"
+                android:layout_gravity="center_vertical"
                 android:layout_marginLeft="36dp"
                 android:layout_marginRight="36dp"
-                android:layout_marginTop="120dp"
+                android:layout_marginTop="280dp"
                 android:padding="8dp"
                 card_view:cardBackgroundColor="#99000000"
                 card_view:cardCornerRadius="16dp"
@@ -227,14 +228,14 @@
                             android:background="@drawable/custom_blackbutton"
                             android:drawableLeft="@drawable/round_build_white_18dp"
                             android:drawablePadding="80dp"
-                            android:drawableTint="@color/black"
+
                             android:gravity="left|center"
 
                             android:padding="16dp"
                             android:paddingStart="120dp"
                             android:text="@string/get_configuration"
                             android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
-                            android:textColor="@color/black"
+                            android:textColor="@color/white"
                             android:textSize="28sp"
                             android:textStyle="bold" />
 
@@ -249,13 +250,13 @@
                             android:background="@drawable/custom_blackbutton"
                             android:drawableLeft="@drawable/round_near_me_white_18dp"
                             android:drawablePadding="80dp"
-                            android:drawableTint="@color/black"
+
                             android:gravity="left|center"
                             android:padding="16dp"
                             android:paddingStart="120dp"
                             android:text="@string/send_track_log"
                             android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
-                            android:textColor="@color/black"
+                            android:textColor="@color/white"
                             android:textSize="28sp"
                             android:textStyle="bold" />
 

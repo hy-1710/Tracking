@@ -26,10 +26,11 @@
           app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />-->
         <ImageView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#f4bc33"
-            android:backgroundTint="#f4bc33"
-            android:src="@drawable/banner"/>
+            android:layout_height="64dp"
+            android:background="#416bc1"
+            android:backgroundTint="#416bc1"
+            android:src="@drawable/banner"
+            android:scaleType="fitXY"/>
     </android.support.design.widget.AppBarLayout>
 
         <ScrollView
@@ -228,7 +229,7 @@
                         android:layout_margin="16dp"
                         android:background="@drawable/custom_blackbutton"
                         android:drawableLeft="@drawable/round_build_white_18dp"
-                        android:drawableTint="@color/black"
+
                         android:drawablePadding="48dp"
                         android:gravity="left|center"
 
@@ -236,7 +237,7 @@
                         android:padding="8dp"
                         android:paddingStart="120dp"
                         android:text="Get Configuration"
-                        android:textColor="@color/black"
+                        android:textColor="@color/white"
                         android:textSize="16sp"
                         android:textStyle="bold" />
 
@@ -250,13 +251,13 @@
                         android:drawableLeft="@drawable/round_near_me_white_18dp"
                         android:drawablePadding="48dp"
                         android:gravity="left|center"
-                        android:drawableTint="@color/black"
+
 
 
                         android:padding="8dp"
                         android:paddingStart="120dp"
                         android:text="Send TrackLog"
-                        android:textColor="@color/black"
+                        android:textColor="@color/white"
                         android:textSize="16sp"
                         android:textStyle="bold" />
 

@@ -26,10 +26,11 @@
           app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />-->
         <ImageView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="120dp"
             android:src="@drawable/banner"
-            android:background="#f4bc33"
-            android:backgroundTint="#f4bc33"/>
+            android:background="#416bc1"
+            android:scaleType="fitXY"
+            android:backgroundTint="#416bc1"/>
     </android.support.design.widget.AppBarLayout>
 
         <ScrollView
@@ -53,7 +54,7 @@
                     android:layout_marginBottom="16dp"
                     android:layout_marginLeft="48dp"
                     android:layout_marginRight="48dp"
-                    android:layout_marginTop="120dp"
+                    android:layout_marginTop="180dp"
                     android:padding="8dp"
                     card_view:cardBackgroundColor="#99000000"
                     card_view:cardCornerRadius="16dp"
@@ -237,12 +238,10 @@
                                 android:layout_margin="28dp"
                                 android:background="@drawable/custom_blackbutton"
                                 android:drawableLeft="@drawable/round_build_white_18dp"
-                                android:drawablePadding="56dp"
-                                android:drawableTint="@color/black"
-                                android:gravity="center|left"
+                                android:drawablePadding="56dp" android:gravity="center|left"
                                 android:paddingStart="220dp"
                                 android:text="@string/get_configuration"
-                                android:textColor="@color/black"
+                                android:textColor="@color/white"
                                 android:textSize="20dp"
                                 android:textStyle="bold" />
 
@@ -257,11 +256,11 @@
                                 android:background="@drawable/custom_blackbutton"
                                 android:drawableLeft="@drawable/round_near_me_white_18dp"
                                 android:drawablePadding="56dp"
-                                android:drawableTint="@color/black"
+
                                 android:gravity="center|left"
                                 android:paddingStart="220dp"
                                 android:text="@string/send_track_log"
-                                android:textColor="@color/black"
+                                android:textColor="@color/white"
                                 android:textSize="20dp"
                                 android:textStyle="bold" />
 

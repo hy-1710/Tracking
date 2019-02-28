@@ -26,10 +26,10 @@
           app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />-->
         <ImageView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="80dp"
             android:src="@drawable/banner"
-            android:background="#f4bc33"
-            android:backgroundTint="#f4bc33"/>
+            android:background="#416bc1"
+            android:backgroundTint="#416bc1"/>
     </android.support.design.widget.AppBarLayout>
 
     <LinearLayout
@@ -42,12 +42,12 @@
         <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
             android:id="@+id/card_view"
             android:layout_width="match_parent"
-            android:layout_height="490dp"
+            android:layout_height="520dp"
             android:layout_gravity="center"
             android:layout_marginBottom="120dp"
             android:layout_marginLeft="32dp"
             android:layout_marginRight="32dp"
-            android:layout_marginTop="180dp"
+            android:layout_marginTop="380dp"
             android:padding="8dp"
             card_view:cardBackgroundColor="#99000000"
             card_view:cardCornerRadius="16dp"
@@ -185,7 +185,7 @@
                 </LinearLayout>
 
 
-                <LinearLayout
+               <!-- <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
@@ -209,7 +209,7 @@
                         app:sub_btn_ripple_color="@color/sub_btn_line"
                         app:sub_btn_tick_color="@color/white" />
 
-                </LinearLayout>
+                </LinearLayout>-->
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -230,9 +230,9 @@
                         android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
                         android:background="@drawable/custom_blackbutton"
                         android:drawableLeft="@drawable/round_build_white_18dp"
-                        android:drawableTint="@color/black"
+
                         android:text="@string/get_configuration"
-                        android:textColor="@color/black"
+                        android:textColor="@color/white"
                         android:textStyle="bold"
                         android:textSize="16sp" />
 
@@ -251,9 +251,9 @@
                         android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
                         android:background="@drawable/custom_blackbutton"
                         android:drawableLeft="@drawable/round_near_me_white_18dp"
-                        android:drawableTint="@color/black"
+
                         android:text="@string/send_track_log"
-                        android:textColor="@color/black"
+                        android:textColor="@color/white"
                         android:textStyle="bold"
                         android:textSize="16sp" />
 

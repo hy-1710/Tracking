@@ -25,10 +25,10 @@
           app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />-->
         <ImageView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="80dp"
             android:src="@drawable/banner"
-            android:background="#f4bc33"
-            android:backgroundTint="#f4bc33"/>
+            android:background="#416bc1"
+            android:backgroundTint="#416bc1"/>
     </android.support.design.widget.AppBarLayout>
 
     <LinearLayout
@@ -183,7 +183,7 @@
                         app:layout_constraintTop_toTopOf="parent" />
                 </LinearLayout>
 
-
+<!--
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -207,7 +207,7 @@
                         app:sub_btn_ripple_color="@color/sub_btn_line"
                         app:sub_btn_tick_color="@color/white" />
 
-                </LinearLayout>
+                </LinearLayout>-->
 
 
                 <LinearLayout
@@ -229,9 +229,9 @@
                         android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
                         android:background="@drawable/custom_blackbutton"
                         android:drawableLeft="@drawable/round_build_white_18dp"
-                        android:drawableTint="@color/black"
+
                         android:text="@string/get_configuration"
-                        android:textColor="@color/black"
+                        android:textColor="@color/white"
                         android:textStyle="bold"
                         android:textSize="16sp" />
 
@@ -250,9 +250,9 @@
                         android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
                         android:background="@drawable/custom_blackbutton"
                         android:drawableLeft="@drawable/round_near_me_white_18dp"
-                        android:drawableTint="@color/black"
+
                         android:text="@string/send_track_log"
-                        android:textColor="@color/black"
+                        android:textColor="@color/white"
                         android:textStyle="bold"
                         android:textSize="16sp" />
 

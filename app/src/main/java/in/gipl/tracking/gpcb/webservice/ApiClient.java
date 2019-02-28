@@ -10,7 +10,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class ApiClient {
 
 
-    public static final String BASE_URL = "http://demo2.gipl.in/GSPLPMSMobile.svc/";
+    //public static final String BASE_URL = "http://gpcblta.gipl.in/GPCBMobile.svc/";
+    public static final String BASE_URL = "http://demo.gipl.in/GPCBMobile.svc/";
+    //public static final String BASE_URL = "http://localhost:1065/GPCBMobile.svc/";
     private static Retrofit retrofit = null;
 
 

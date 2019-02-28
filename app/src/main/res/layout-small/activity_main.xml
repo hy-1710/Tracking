@@ -152,8 +152,9 @@
                     android:gravity="center"
                     android:orientation="horizontal">
 
-                    <com.spark.submitbutton.SubmitButton
+                   <!-- <com.spark.submitbutton.SubmitButton
                         android:id="@+id/btnGetconfig"
+                        android:visibility="gone"
 
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -166,7 +167,7 @@
                         app:sub_btn_duration="3000"
                         app:sub_btn_line_color="@color/sub_btn_line"
                         app:sub_btn_ripple_color="@color/sub_btn_line"
-                        app:sub_btn_tick_color="@color/white" />
+                        app:sub_btn_tick_color="@color/white" />-->
 
                 </LinearLayout>
 

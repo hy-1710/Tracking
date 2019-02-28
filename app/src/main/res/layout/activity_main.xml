@@ -25,10 +25,11 @@
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />-->
         <ImageView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#f4bc33"
-            android:backgroundTint="#f4bc33"
-            android:src="@drawable/banner"/>
+            android:layout_height="64dp"
+            android:background="#416bc1"
+            android:backgroundTint="#416bc1"
+            android:src="@drawable/banner"
+            android:scaleType="fitXY"/>
     </android.support.design.widget.AppBarLayout>
 
 
@@ -95,7 +96,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
                         android:gravity="left"
-                        android:text="60"
+                        android:text="30"
                         android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small"
                         android:textColor="@color/white" />
 
@@ -124,7 +125,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="8dp"
                         android:gravity="left"
-                        android:text="60"
+                        android:text="30"
                         android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small"
                         android:textColor="@color/white"
 
@@ -191,7 +192,7 @@
 
 
 
-                    <LinearLayout
+                    <!--<LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="100dp"
                         android:layout_gravity="center"
@@ -213,7 +214,7 @@
                             app:sub_btn_line_color="@color/sub_btn_line"
                             app:sub_btn_ripple_color="@color/sub_btn_line"
                             app:sub_btn_tick_color="@color/white" />
-                    </LinearLayout>
+                    </LinearLayout>-->
 
 
                 <LinearLayout
@@ -297,12 +298,12 @@
                             android:layout_margin="16dp"
                             android:background="@drawable/custom_blackbutton"
                             android:drawableLeft="@drawable/round_build_white_18dp"
-                            android:drawableTint="@color/black"
+
                             android:drawablePadding="8dp"
                             android:gravity="center|left"
                             android:paddingStart="48dp"
                             android:text="@string/get_configuration"
-                            android:textColor="@color/black"
+                            android:textColor="@color/white"
                             android:textSize="16sp"
                             android:textStyle="bold" />
 
@@ -316,10 +317,10 @@
                             android:drawableLeft="@drawable/round_near_me_white_18dp"
                             android:drawablePadding="8dp"
                             android:gravity="left|center"
-                            android:drawableTint="@color/black"
+
                             android:paddingStart="48dp"
                             android:text="@string/send_track_log"
-                            android:textColor="@color/black"
+                            android:textColor="@color/white"
                             android:textSize="16sp"
                             android:textStyle="bold" />
 

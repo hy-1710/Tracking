@@ -11,7 +11,7 @@
 
 
 
-    <color name="colorPrimary">#FFC7820A</color>
-    <color name="colorPrimaryDark">#FF935E02</color>
+    <color name="colorPrimary">#243f64</color>
+    <color name="colorPrimaryDark">#243f64</color>
     <color name="colorAccent">#243f64</color>
 </resources>

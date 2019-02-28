@@ -39,7 +39,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     Context context;
 
 
-    public DataBaseHelper(Context context) {
+    public      DataBaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
         prefs = new AppPrefs(context);
         this.context = context;

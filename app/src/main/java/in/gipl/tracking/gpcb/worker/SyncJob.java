@@ -155,7 +155,8 @@ public class SyncJob extends JobService {
         RequestBody body = RequestBody.create(mediaType,
                 jsonArrayString);
         Request request = new Request.Builder()
-                .url("http://demo2.gipl.in/GSPLPMSMobile.svc/SyncTracklog")
+                .url("http://demo.gipl.in/GPCBMobile.svc/SyncTracklog")
+               // .url("http://localhost:1065/GPCBMobile.svc/SyncTrackLog")
                 .post(body)
                 .addHeader("Content-Type", "text/plain")
               /*  .addHeader("Cache-Control", "no-cache")
