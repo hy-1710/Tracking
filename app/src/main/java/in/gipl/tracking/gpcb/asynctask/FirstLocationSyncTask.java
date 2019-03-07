@@ -3,6 +3,7 @@ package in.gipl.tracking.gpcb.asynctask;
 import android.graphics.Color;
 import android.location.Location;
 import android.os.AsyncTask;
+import android.os.Handler;
 import android.support.design.widget.Snackbar;
 import android.util.Log;
 import android.view.View;
@@ -27,6 +28,8 @@ import in.gipl.tracking.gpcb.database.LocationData;
 import in.gipl.tracking.gpcb.databinding.ActivityMainBinding;
 import in.gipl.tracking.gpcb.helper.LocationJobHelper;
 import in.gipl.tracking.gpcb.worker.LocationJob;
+import okhttp3.Call;
+import okhttp3.Callback;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -47,20 +50,21 @@ public class FirstLocationSyncTask  extends AsyncTask<Void, Void, String> {
     DataBaseHelper db;
     String s;
     Location location;
+    static String jsonData;
 
 
 
     ActivityMainBinding binding;
     public static final String TAG = FirstLocationSyncTask.class.getSimpleName();
 
-    public FirstLocationSyncTask( DataBaseHelper dataBaseHelper, ActivityMainBinding binding, MainActivity activity, Location location) {
-       locationData = new ArrayList<>();
+    public FirstLocationSyncTask(DataBaseHelper dataBaseHelper, ActivityMainBinding binding, MainActivity activity, Location location) {
+        locationData = new ArrayList<>();
         this.dataBaseHelper = dataBaseHelper;
         this.activity = activity;
         client = new OkHttpClient();
         this.binding = binding;
         this.location = location;
-       db = new DataBaseHelper(activity);
+        db = new DataBaseHelper(activity);
     }
 
     @Override
@@ -72,8 +76,7 @@ public class FirstLocationSyncTask  extends AsyncTask<Void, Void, String> {
     protected String doInBackground(Void... voids) {
 
 
-        if(location!= null)
-        {
+        if (location != null) {
             double latitude = location.getLatitude();
             double longitude = location.getLongitude();
             String table = LocationData.TABLE_NAME;
@@ -81,32 +84,20 @@ public class FirstLocationSyncTask  extends AsyncTask<Void, Void, String> {
 
             long id = db.insertNote(latitude, longitude);
             Timber.e("call: ID: %s", id);
-            Log.e(TAG, "call: TOTAL NO OF RECORDS :" + db.getAllLocation());
+
 
             s = Long.toString(id);
-            String str = SyncData();
+            SyncData(); // get data from DB
 
-            if(str!= null) {
 
-            }
         }
 
-        return  null;
+        return null;
 
 
     }
 
-
-    @Override
-    protected void onPostExecute(String s) {
-        super.onPostExecute(s);
-
-        Log.e(TAG, "onPostExecute: "+s );
-
-
-    }
-
-    private String SyncData()
+    private void SyncData()
     {
         if(db.getAllLocation().size() > 0)
         {
@@ -126,6 +117,14 @@ public class FirstLocationSyncTask  extends AsyncTask<Void, Void, String> {
                 }
 
                 jsonArrayString = jsonArray.toString();
+                Log.e(TAG, "sendPost: JSON -----" + jsonArrayString);
+                sendData(jsonArrayString);
+
+
+
+
+
+
 
 
 
@@ -133,11 +132,109 @@ public class FirstLocationSyncTask  extends AsyncTask<Void, Void, String> {
                 e.printStackTrace();
             }
 
+
+
+
+        }else
+        {
+            Log.e(TAG, "SyncData: NO TRACKLOG " );
+
+        }
+
+
+
+
+    }
+
+
+    private void ExcecuteMessage()
+    {
+        Log.e(TAG, "ExcecuteMessage: "+jsonData );
+        if (jsonData != null) {
+            Log.e(TAG, "ExcecuteMessage: jsonDATA is not null" );
+
+
+
+            if (jsonData.contains("True")) {
+                Log.e(TAG, "onPostExecute:s.contains(\"True\")  Called ");
+                Snackbar snackbar = Snackbar
+                        .make(binding.coordinatorLayout, "Send TrackLog Successfully", Snackbar.LENGTH_LONG)
+                        .setAction("Okay", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                   /* Snackbar snackbar1 = Snackbar.make(binding.coordinatorLayout, "Message is restored!", Snackbar.LENGTH_SHORT);
+                                    snackbar1.show();*/
+                            }
+                        });
+
+                snackbar.show();
+                snackbar.setActionTextColor(Color.YELLOW);
+            } else if (jsonData.contains("Device Not Configure")) {
+                Snackbar snackbar = Snackbar
+                        .make(binding.coordinatorLayout, "Sorry! Your Device is not Configured", Snackbar.LENGTH_LONG)
+                        .setAction("Okay", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                   /* Snackbar snackbar1 = Snackbar.make(binding.coordinatorLayout, "Message is restored!", Snackbar.LENGTH_SHORT);
+                                    snackbar1.show();*/
+                            }
+                        });
+
+                snackbar.show();
+                snackbar.setActionTextColor(Color.YELLOW);
+            } else if (jsonData.contains("False")) {
+                Snackbar snackbar = Snackbar
+                        .make(binding.coordinatorLayout, "Something went wrong!", Snackbar.LENGTH_LONG)
+                        .setAction("Okay", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+
+                            }
+                        });
+
+                snackbar.show();
+                snackbar.setActionTextColor(Color.YELLOW);
+            } else if (jsonData.contains("No Tracklog Found")) {
+                Log.e(TAG, "onPostExecute: else if (s.contains(\"No Tracklog Found\") Called ");
+                Snackbar snackbar = Snackbar
+                        .make(binding.coordinatorLayout, "No TrackLog Found!", Snackbar.LENGTH_LONG)
+                        .setAction("Okay", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+
+                            }
+                        });
+
+                snackbar.show();
+                snackbar.setActionTextColor(Color.YELLOW);
+            } else {
+                Snackbar snackbar = Snackbar
+                        .make(binding.coordinatorLayout, "Something went wrong!", Snackbar.LENGTH_LONG)
+                        .setAction("Okay", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+
+                            }
+                        });
+
+                snackbar.show();
+                snackbar.setActionTextColor(Color.YELLOW);
+            }
+        }
+    }
+    private void sendData(String Message)
+    {
+        Log.e(TAG, "sendData  Message -->: "+Message );
+
+        if(Message!= null)
+        {
+            Log.e(TAG, "sendData: IF MESSGE NOT NUll" );
             MediaType mediaType = MediaType.parse("text/plain");
             RequestBody body = RequestBody.create(mediaType,
                     jsonArrayString);
             Request request = new Request.Builder()
                     .url("http://demo.gipl.in/GPCBMobile.svc/SyncTracklog")
+                    // .url("http://gpcblta.gipl.in/GPCBMobile.svc/SyncTracklog")
                     .post(body)
                     .addHeader("Content-Type", "text/plain")
 
@@ -146,76 +243,183 @@ public class FirstLocationSyncTask  extends AsyncTask<Void, Void, String> {
 
                     .build();
 
-            try {
-                response = client.newCall(request).execute();
-                if (response != null) {
-
-                    Log.e(TAG, "doInBackground: BODY----"+response.body().string());
-                    /*  resp = response.body().string();*/
-                    ResponseBody responseBody = response.body();
-
-                    if (response.isSuccessful()) {
-
-                        Log.e(TAG, "doInBackground: response is Succesfull---" );
-                        LocationData locationDataWithMaxId = getLocationDataWithMaxId(locationData);
-                        dataBaseHelper.insertSyncData(
-                                locationDataWithMaxId.getLocationId(),
-                                locationDataWithMaxId.getUserId(),
-                                locationData.size(),
-                                getCurrentTimeUsingDate()
-                        );
-                        if (responseBody != null) {
-                            Log.e(TAG, "doInBackground: "+response.message() );
+            Call cL = client.newCall(request);
+            cL.enqueue(new Callback() {
+                @Override
+                public void onFailure(Call call, IOException e) {
+                    Log.e(TAG, "onFailure: " );
+                    e.printStackTrace();
+                    jsonData= e.getMessage().toString();
+                    Log.e(TAG, "onFailure: "+jsonData );
 
 
-                            if(response.message().equals("OK"))
+                }
+
+                @Override
+                public void onResponse(Call call, Response response) throws IOException {
+                    try {
+                        jsonData = response.body().string();
+                        Log.e(TAG, "onResponse response: jsonData " + jsonData);
+
+                        if (response != null) {
+                            Log.e(TAG, "onResponse: is not null" );
+
+                            Log.e(TAG, "onResponse: response.isSuccessful()---> "+response.isSuccessful() );
+
+
+
+                            if (response.isSuccessful()) {
+
+                                Log.e(TAG, "doInBackground: response is Succesfull---");
+                                LocationData locationDataWithMaxId = getLocationDataWithMaxId(locationData);
+                                dataBaseHelper.insertSyncData(
+                                        locationDataWithMaxId.getLocationId(),
+                                        locationDataWithMaxId.getUserId(),
+                                        locationData.size(),
+                                        getCurrentTimeUsingDate()
+                                );
+                                setMessage(jsonData);
+
+
+
+                            }else
                             {
+                                Log.e(TAG, "onResponse not success: "+ response.message());
+                                jsonData = response.message();
+                                setMessage(jsonData);
 
-                                // String s= ""+response.body().string();
-                                return response.message();
                             }
 
 
-
-                        } else {
-
-                            return response.message();
-
+                        }else
+                        {
+                            Log.e(TAG, "onResponse: is null" );
                         }
-                    } else {
 
-                        if (responseBody != null) {
-                            return response.message();
-
-
-                        } else {
-                            return response.message();
-                        }
+                    }catch (IOException e) {
+                        e.printStackTrace();
                     }
-
-
-                }else
-
-                {
-                    Log.e(TAG, "doInBackground: ---"+response.body().string() );
                 }
 
 
+            });
 
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
 
 
         }else
         {
 
+            Log.e(TAG, "sendData: IF MESSGAE IS NULL" );
+            setMessage("No Tracklog Found");
         }
 
 
 
-        return  null;
     }
+
+    private String setMessage(String message)
+    {
+        Log.e(TAG, "setMessage: "+message );
+        if(message!= null)
+        {
+            return message;
+        }
+        return null;
+    }
+
+    @Override
+    protected void onPostExecute(String s) {
+        super.onPostExecute(s);
+        Log.e(TAG, "onPostExecute: Called--->" );
+
+        final Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                ExcecuteMessage();
+                //Do something after 100ms
+            }
+        }, 500);
+
+      //  new Thread(new ExecuteMessageTask() ).start();
+       // ExcecuteMessage();
+
+
+
+/*
+
+        if (s.contains("True")) {
+            Log.e(TAG, "onPostExecute:s.contains(\"True\")  Called ");
+            Snackbar snackbar = Snackbar
+                    .make(binding.coordinatorLayout, "Send TrackLog Successfully", Snackbar.LENGTH_LONG)
+                    .setAction("Okay", new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                                   *//* Snackbar snackbar1 = Snackbar.make(binding.coordinatorLayout, "Message is restored!", Snackbar.LENGTH_SHORT);
+                                    snackbar1.show();*//*
+                        }
+                    });
+
+            snackbar.show();
+            snackbar.setActionTextColor(Color.YELLOW);
+        } else if (s.contains("Device Not Configure")) {
+            Snackbar snackbar = Snackbar
+                    .make(binding.coordinatorLayout, "Sorry! Device is not Configure. Contact your administrator", Snackbar.LENGTH_LONG)
+                    .setAction("Okay", new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                                   *//* Snackbar snackbar1 = Snackbar.make(binding.coordinatorLayout, "Message is restored!", Snackbar.LENGTH_SHORT);
+                                    snackbar1.show();*//*
+                        }
+                    });
+
+            snackbar.show();
+            snackbar.setActionTextColor(Color.YELLOW);
+        } else if (s.contains("False")) {
+            Snackbar snackbar = Snackbar
+                    .make(binding.coordinatorLayout, "Something went wrong!", Snackbar.LENGTH_LONG)
+                    .setAction("Okay", new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+
+                        }
+                    });
+
+            snackbar.show();
+            snackbar.setActionTextColor(Color.YELLOW);
+        } else if (s.contains("No Tracklog Found")) {
+            Log.e(TAG, "onPostExecute: else if (s.contains(\"No Tracklog Found\") Called ");
+            Snackbar snackbar = Snackbar
+                    .make(binding.coordinatorLayout, "No TrackLog Found!", Snackbar.LENGTH_LONG)
+                    .setAction("Okay", new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+
+                        }
+                    });
+
+            snackbar.show();
+            snackbar.setActionTextColor(Color.YELLOW);
+        } else {
+            Snackbar snackbar = Snackbar
+                    .make(binding.coordinatorLayout, "Something went wrong!", Snackbar.LENGTH_LONG)
+                    .setAction("Okay", new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+
+                        }
+                    });
+
+            snackbar.show();
+            snackbar.setActionTextColor(Color.YELLOW);
+        }*/
+    }
+
+
+
+
+
+
 
     private LocationData getLocationDataWithMaxId(final List<LocationData> locationDataList) {
         LocationData locationDataMaxId = new LocationData();
@@ -236,6 +440,7 @@ public class FirstLocationSyncTask  extends AsyncTask<Void, Void, String> {
         Timber.e("Current time of the day using Date - 12 hour format: %s", formattedDate);
         return formattedDate;
     }
+
 
 
 

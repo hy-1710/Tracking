@@ -186,6 +186,10 @@ public class        MainActivity extends AppCompatActivity {
                     binding.tvLocation.setText(location.getLatitude() + "  | " + location.getLongitude());
                     //binding.tvIMEINO.setText(appPrefs.getIMEINO()!= null ? appPrefs.getIMEINO() : "Could not find IMEI Number." );
                     binding.tvIMEINO.setText(appPrefs.getIMEINO());
+                    if(isFirstTimeInstall)
+                    {
+                        SyncFirstTIme();
+                    }
 
                 }
             }
@@ -201,8 +205,24 @@ public class        MainActivity extends AppCompatActivity {
 
 
 
+
+
+
+
+        // Start Firebase Job
+
+        //  scheduleLocationJob();
+        //    scheduleSyncJob();
+
+
+    }
+
+    private void SyncFirstTIme()
+    {
+        Log.e(TAG, "onPostCreate:  BEFORE IF" );
         if(isFirstTimeInstall)
         {
+
             if(loc!= null)
             {
 
@@ -232,16 +252,6 @@ public class        MainActivity extends AppCompatActivity {
 
             }
         }
-
-
-
-
-        // Start Firebase Job
-
-        //  scheduleLocationJob();
-        //    scheduleSyncJob();
-
-
     }
 
     @Override
